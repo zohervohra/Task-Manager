@@ -13,7 +13,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.post('/createUser', async (req, res) => {
   try {
     // Check whether the user email already exists
-    let testUser = await prisma.user.findUnique({
+    let testUser = await prisma.User.findUnique({
       where: {
         email: req.body.email,
       },
@@ -28,7 +28,7 @@ router.post('/createUser', async (req, res) => {
     const secPassword = await bcrypt.hash(req.body.password, salt);
 
     // Creating a new user
-    let user = await prisma.user.create({
+    let user = await prisma.User.create({
       data: {
         name: req.body.name,
         email: req.body.email,
@@ -38,10 +38,10 @@ router.post('/createUser', async (req, res) => {
 
     // Creating and sending a JWT for secure authentication
     const data = {
-      user: {
+     
         id: user.id,
-      },
     };
+    console.log(data)
     const authToken = jwt.sign(data, JWT_SECRET);
     console.log(authToken);
     res.send({ authToken });
@@ -64,7 +64,7 @@ router.post('/login', [
 
   try {
     // Find user by email
-    const user = await prisma.user.findUnique({
+    const user = await prisma.User.findUnique({
       where: {
         email: email,
       },

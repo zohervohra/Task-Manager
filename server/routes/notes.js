@@ -11,14 +11,21 @@ const fetchUserMiddleware = require('../middleware/fetchUser');
 // GET /api/notes/fetchAllNotes - Fetch all notes for the logged-in user
 router.get('/fetchAllNotes', fetchUserMiddleware, async (req, res) => {
     try {
-      const notes = await prisma.note.findMany({
+      console.log(req.user)
+    
+      const notes = await prisma.Note.findMany({
         where: {
           user: {
             id: req.user.id,
           },
         },
       });
-      res.json(notes);
+    //   const filteredNotes = notes.filter(note => note.userId === req.user.id);
+
+    // res.json(filteredNotes);
+    res.json(notes);
+      
+
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ error: 'Internal error occurred' });
@@ -38,7 +45,7 @@ router.get('/fetchAllNotes', fetchUserMiddleware, async (req, res) => {
     const { title, description, tags } = req.body;
     console.log(req.user)
     try {
-      const newNote = await prisma.note.create({
+      const newNote = await prisma.Note.create({
         data: {
           title,
           description,
@@ -59,7 +66,7 @@ router.get('/fetchAllNotes', fetchUserMiddleware, async (req, res) => {
     const { title, description, tags } = req.body;
   
     try {
-      const updatedNote = await prisma.note.update({
+      const updatedNote = await prisma.Note.update({
         where: {
           id: parseInt(req.params.id),
         },
@@ -80,7 +87,7 @@ router.get('/fetchAllNotes', fetchUserMiddleware, async (req, res) => {
   // DELETE /api/notes/deleteNote/:id - Delete a note for the logged-in user
   router.delete('/deleteNote/:id', fetchUserMiddleware, async (req, res) => {
     try {
-      const deletedNote = await prisma.note.delete({
+      const deletedNote = await prisma.Note.delete({
         where: {
           id: parseInt(req.params.id),
         },
