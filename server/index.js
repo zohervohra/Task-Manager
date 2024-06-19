@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 // Available routes (Routes are handled through express-router)
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/notes', require('./routes/notes'));
+app.use('/api/subNotes', require('./routes/subNotes'));
 
 // Basic error handling
 app.use((err, req, res, next) => {

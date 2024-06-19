@@ -17,11 +17,22 @@ model User {
 }
 
 model Note {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
   title       String
   description String
+  tags        String?   // Optional field
+  date        DateTime  @default(now())
+  SubNote     SubNote[] // Relation to subnotes
+}
+
+model SubNote {
+  id          Int      @id @default(autoincrement())
+  noteId      Int
+  note        Note     @relation(fields: [noteId], references: [id])
+  title       String
+  description String?  // Optional field
   tags        String?  // Optional field
   date        DateTime @default(now())
 }
