@@ -59,24 +59,27 @@ export default function Dashboard() {
   };
 
   const updateNote = (currentNote) => {
+   
+    openModal();
     setUpdatedNote({
       id: currentNote.id,
       title: currentNote.title,
       description: currentNote.description,
       tag: currentNote.tag,
     });
-    openModal();
   };
 
   const handleClickUpdate = (e) => {
     e.preventDefault();
     editNote(updatedNote);
     closeModal();
+    
     getAllNotes(); // Assuming getAllNotes fetches fresh data after edit
   };
 
   const onChangeUpdate = (e) => {
     setUpdatedNote({ ...updatedNote, [e.target.name]: e.target.value });
+
   };
 
   const handleCheckboxChange = async (note) => {

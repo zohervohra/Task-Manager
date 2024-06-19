@@ -42,9 +42,9 @@ export default function Navbar() {
                 <div className="navbar-end">
                     {}
              
-                    {!localStorage.getItem('token') ? <form class="d-flex" role="search">       <Link className="btn p-1 mx-2 px-2 md:p-2 md:px-3 btn-primary rounded-xl " to='./login'>Login</Link>
+                    {!localStorage.getItem('token') ? <form className="d-flex" role="search">       <Link className="btn p-1 mx-2 px-2 md:p-2 md:px-3 btn-primary rounded-xl " to='./login'>Login</Link>
                     <Link className="btn p-1 md:p-2  md:py-1  btn-primary rounded-xl " to='./signUp'>Sign Up</Link></form> :
-      <form class="d-flex" role="search"><Link class="btn p-1 md:p-2  md:py-1  btn-primary rounded-xl"  to='/login' onClick={()=>{
+      <form className="d-flex" role="search"><Link className="btn p-1 md:p-2  md:py-1  btn-primary rounded-xl"  to='/login' onClick={()=>{
         localStorage.removeItem('token')
         nagivate.push('/login')
       }}>Logout</Link> </form>

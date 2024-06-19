@@ -7,7 +7,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
 
 
-    const host = 'http://localhost:3000'
+    const host = 'https://task-manager-production-7563.up.railway.app'
     let notesInitial = []
 
     const [notes, setNotes] = useState(notesInitial);

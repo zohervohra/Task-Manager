@@ -12,7 +12,7 @@ export default function SignUp() {
             return
         }
 
-        const response = await fetch('http://localhost:3000/api/auth/createUser', {
+        const response = await fetch('https://task-manager-production-7563.up.railway.app/api/auth/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
